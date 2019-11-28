@@ -1,0 +1,55 @@
+#!/bin/bash
+
+sudo apt install software-properties-common apt-transport-https -y
+sudo add-apt-repository ppa:openjdk-r/ppa -y
+
+sudo apt install openjdk-8-jdk -y
+
+java -version
+
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+echo 'deb https://pkg.jenkins.io/debian-stable binary/' | tee -a /etc/apt/sources.list
+
+sudo apt install jenkins -y
+
+systemctl start jenkins
+systemctl enable jenkins
+
+sudo apt-get install apache2 -y
+
+a2enmod proxy
+a2enmod proxy_http
+
+cd /etc/apache2/sites-available/
+vim jenkins.conf
+
+<Virtualhost *:80>
+    ServerName        jenkins.hakase-labs.io
+    ProxyRequests     Off
+    ProxyPreserveHost On
+    AllowEncodedSlashes NoDecode
+ 
+    <Proxy http://localhost:8080/*>
+      Order deny,allow
+      Allow from all
+    </Proxy>
+ 
+    ProxyPass         /  http://localhost:8080/ nocanon
+    ProxyPassReverse  /  http://localhost:8080/
+    ProxyPassReverse  /  http://jenkins.hakase-labs.io/
+</Virtualhost>
+
+
+a2ensite jenkins
+
+systemctl restart apache2
+systemctl restart jenkins
+
+ufw allow ssh
+ufw allow http
+ufw allow https
+#Now start and enable the ufw firewall.
+
+ufw enable
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
