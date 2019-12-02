@@ -3,8 +3,9 @@ FROM ubuntu
 MAINTAINER NCS@satish
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install httpd -y
+RUN apt-get install apache2 -y
 
+CMD ["echo","docker apache web server"] > index.html
 COPY index.html /var/www/html/
 
 CMD [“/usr/sbin/httpd”, “-D”, “FOREGROUND”]
