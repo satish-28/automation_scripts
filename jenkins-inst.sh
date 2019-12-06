@@ -7,7 +7,7 @@ sudo apt-get install -y default-jdk
 sudo apt-get install -y git-all
 
 
-## install jenkins ##
+## add repo and keys##
 
 sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 
