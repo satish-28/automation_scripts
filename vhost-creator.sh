@@ -150,9 +150,9 @@ if [[ "${q}" == "yes" ]] || [[ "${q}" == "y" ]]; then
 service $SERVICE_ restart
 fi
 echo "======================================"
-echo "All works done! You should be able to see your website at http://$servn"
+echo "All works done!
 echo ""
 echo "Share the love! <3"
 echo "======================================"
 echo ""
-echo "Wanna contribute to improve this script? Found a bug? https://github.com/mattmezza/vhost-creator"
+echo "Wanna contribute to improve this script? Found a bug? https://github.com/satish-28/vhost-creator"
