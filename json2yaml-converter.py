@@ -1,5 +1,8 @@
 #Programmer - python_script(Dev-satish)
 
+# PyYAML is applicable for board range of tasks from complex configuration files to object serialization & persistance
+# JSON is in-built module in Python and the YAML Module can be installed using the command - pip install PyYAML.
+
 import json
 import yaml 
 
